@@ -1,1 +1,55 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id=";C$~718A@hAv~CDox^0v">sonar</variable></variables></xml>
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="9K:P|V7,]D{9xUP:ibf$">sonar</variable></variables><comment data="0" x="0" y="0" h="360" w="480">basic.forever(function () {
+
+sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
+
+if (sonar &gt; 5 &amp;&amp; sonar &lt; 10) {
+
+cuteBot.stopcar()
+
+// for (let index = 0; index &lt; 4; index++) {
+
+// music.playTone(880, music.beat(BeatFraction.Quarter))
+
+// }
+
+basic.pause(2000)
+
+cuteBot.moveTime(cuteBot.Direction.backward, 50, 5000)
+
+basic.pause(2000)
+
+} else {
+
+cuteBot.forward()
+
+}
+
+})</comment><comment data="1" x="0" y="0" h="120" w="270">basic.forever(function () {</comment><comment data="3" x="0" y="0" h="120" w="480">if (cuteBot.tracking(cuteBot.TrackingState.L_unline_R_line)) {</comment><comment data="5" x="0" y="0" h="120" w="220">cuteBot.motors(40, 15)</comment><comment data="7" x="0" y="0" h="120" w="160">}</comment><comment data="9" x="0" y="0" h="120" w="480">if (cuteBot.tracking(cuteBot.TrackingState.L_line_R_unline)) {</comment><comment data="11" x="0" y="0" h="120" w="220">cuteBot.motors(15, 40)</comment><comment data="13" x="0" y="0" h="120" w="160">}</comment><comment data="15" x="0" y="0" h="120" w="480">if (cuteBot.tracking(cuteBot.TrackingState.L_R_line)) {</comment><comment data="17" x="0" y="0" h="120" w="220">cuteBot.motors(40, 40)</comment><comment data="19" x="0" y="0" h="120" w="160">}</comment><comment data="21" x="0" y="0" h="120" w="160">})</comment><block type="device_button_event" x="10" y="10"><field name="NAME">Button.A</field><comment>cuteBot.forward()
+
+basic.forever(function () {
+
+sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
+
+if (sonar &lt; 20 &amp;&amp; sonar &gt; 5) {
+
+for (let index = 0; index &lt; 4; index++) {
+
+basic.pause(100)
+
+music.playTone(880, music.beat(BeatFraction.Quarter))
+
+}
+
+cuteBot.motors(-35, -65)
+
+cuteBot.setServo(cuteBot.ServoList.S1)
+
+basic.pause(randint(100, 200))
+
+} else {
+
+cuteBot.motors(47, 47)
+
+}
+
+})</comment><data>0</data><statement name="HANDLER"><block type="cutebot_move_time"><field name="dir">cuteBot.Direction.forward</field><value name="speed"><shadow type="math_number"><field name="NUM">50</field></shadow></value><value name="time"><shadow type="math_number"><field name="NUM">5</field></shadow></value></block></statement></block><block type="pxt-on-start" x="10" y="10"><statement name="HANDLER"><block type="variables_set"><field name="VAR" id="9K:P|V7,]D{9xUP:ibf$">sonar</field><value name="VALUE"><shadow type="math_number"><field name="NUM">0</field></shadow></value><next><block type="cutebot_move_time"><field name="dir">cuteBot.Direction.forward</field><value name="speed"><shadow type="math_number"><field name="NUM">50</field></shadow></value><value name="time"><shadow type="math_number"><field name="NUM">5</field></shadow></value><next><block type="serial_writenumber"><value name="value"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block></next></block></next></block></statement></block></xml>
