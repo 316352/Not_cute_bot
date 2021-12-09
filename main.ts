@@ -1,9 +1,13 @@
-
+radio.setGroup(1)
+let sonar = 0
   basic.forever(function () {
-  
-  sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
-  
-  if (sonar > 5 && sonar < 10) {
+      sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
+      radio.onReceivedNumber(function (receivedNumber: number) {
+          if (receivedNumber == 7) {
+              cuteBot.stopcar()
+          }
+          else {
+              if (sonar > 5 && sonar < 10) {
   cuteBot.stopcar()
   
    for (let index = 0; index < 4; index++) {
@@ -42,10 +46,10 @@
           basic.pause(2000)
           cuteBot.moveTime(cuteBot.Direction.forward, 30, 1)
           cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
-      }*/
+      }
   })
-   
-let sonar = 0
+
+
  /*basic.forever(function () {
  
   sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
@@ -63,5 +67,13 @@ let sonar = 0
   cuteBot.motors(47, 47)
   }
   })
+
 */
+          }
+      })
+  sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
+  
+  
+})
+
 
