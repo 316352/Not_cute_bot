@@ -9,32 +9,41 @@ radio.setGroup(1)
         cuteBot.stopcar()
       } else {
   
-  if (sonar > 5 && sonar < 10) {
-  cuteBot.stopcar()
-  
-   for (let index = 0; index < 4; index++) {
-     basic.pause(1000)  
-     music.playTone(880, music.beat(BeatFraction.Quarter))
-    }
-    basic.pause(1000)
-     if (sonar > 5 && sonar < 10) {
-    cuteBot.moveTime(cuteBot.Direction.backward, 35, 0.3)
-    basic.pause(2000)
-    cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
-    basic.pause(2000)
-    cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.5)
-    cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
+    if (sonar > 5 && sonar < 10) {
+    cuteBot.stopcar()
+     while (sonar > 5 && sonar < 10){
+         first_side()
+         sonar = 0
+     }
+      cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.4)
+      cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
+      basic.pause(500)
+      sonar = 0
+      while (sonar > 5 && sonar < 10){
+          basic.pause(500)
+          if (sonar > 5 && sonar < 10) {
+          cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
+          basic.pause(1000)
+          cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.4)
+          basic.pause(1000)
+          cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
+          basic.pause(500)
+          }
+          sonar = 0
+        }
+     stop_if_line ()
+     cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.2)
+     basic.pause(1000)
+     cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
      }
     else {
-     cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.5)
-     
-    }
-  } else {
-  
-    follow_line()
+        follow_line()
+     } 
+    }         
+  })
+})
    
-  }
-     /* if (sonar > 5 && sonar < 10) {
+/* if (sonar > 5 && sonar < 10) {
           cuteBot.stopcar()
 
           for (let index = 0; index < 4; index++) {
@@ -48,11 +57,6 @@ radio.setGroup(1)
           cuteBot.moveTime(cuteBot.Direction.forward, 30, 1)
           cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
       }*/
-      }
-    })
-  })
-   
-
  /*basic.forever(function () {
  
   sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
@@ -71,9 +75,41 @@ radio.setGroup(1)
   }
   })
 */
+
+function first_side (){
+    for (let index = 0; index < 4; index++) {
+        basic.pause(1000)
+        music.playTone(880, music.beat(BeatFraction.Quarter))
+    }
+    basic.pause(1000)
+    if (sonar > 5 && sonar < 10) {
+        cuteBot.moveTime(cuteBot.Direction.backward, 30, 0.3)
+        
+        cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
+        
+        cuteBot.moveTime(cuteBot.Direction.forward, 20, 0.5)
+        
+        cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
+    }
+}
+function second_side (){
+    for (let index = 0; index < 4; index++) {
+        basic.pause(1000)
+        music.playTone(880, music.beat(BeatFraction.Quarter))
+    }
+    basic.pause(1000)
+    if (sonar > 5 && sonar < 10) {
+        cuteBot.moveTime(cuteBot.Direction.backward, 30, 0.3)
+        basic.pause(2000)
+        cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
+        basic.pause(2000)
+        cuteBot.moveTime(cuteBot.Direction.forward, 20, 0.5)
+        cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
+    }
+}
 function stop_if_line (){
-    if (cuteBot.tracking(cuteBot.TrackingState.L_R_line)) {
-        cuteBot.stopcar()
+    while (!(cuteBot.tracking(cuteBot.TrackingState.L_R_line))) {
+        cuteBot.motors (20,20)
     }
 }
 function follow_line() {
