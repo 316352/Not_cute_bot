@@ -2,35 +2,35 @@
 let sonar = 0
 radio.setGroup(1)
   basic.forever(function () {
-  
+  let times_done = 0
   sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
-  radio.onReceivedNumber(function (receivedNumber: number){
+  /*radio.onReceivedNumber(function (receivedNumber: number){
       if (receivedNumber == 7) {
         cuteBot.stopcar()
-      } else {
+      } else {*/
   
-    if (sonar > 5 && sonar < 10) {
-    cuteBot.stopcar()
-     while (sonar > 5 && sonar < 10){
-         first_side()
-         sonar = 0
-     }
+    for (let x=0; x<4 ; x++){
+        basic.pause(500)
+        if (sonar > 5 && sonar < 10) {
+        cuteBot.stopcar()
+        first_side()
+        basic.pause(1000)
+        times_done = times_done + 1
+        sonar = 0
+        } 
+        
+    } 
+    if (times_done > 0) {  
       cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.4)
       cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
       basic.pause(500)
-      sonar = 0
-      while (sonar > 5 && sonar < 10){
+     for (let y = 0; y < 4; y++) {
+         if (sonar > 5 && sonar < 10){
           basic.pause(500)
-          if (sonar > 5 && sonar < 10) {
-          cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
-          basic.pause(1000)
-          cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.4)
-          basic.pause(1000)
-          cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
-          basic.pause(500)
-          }
-          sonar = 0
-        }
+          second_side ()
+         }
+    }
+     basic.pause(1000)   
      stop_if_line ()
      cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.2)
      basic.pause(1000)
@@ -39,8 +39,8 @@ radio.setGroup(1)
     else {
         follow_line()
      } 
-    }         
-  })
+    //}         
+  //})
 })
    
 /* if (sonar > 5 && sonar < 10) {
@@ -84,27 +84,23 @@ function first_side (){
     basic.pause(1000)
     if (sonar > 5 && sonar < 10) {
         cuteBot.moveTime(cuteBot.Direction.backward, 30, 0.3)
-        
+        basic.pause(2000)
         cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
-        
+        basic.pause(2000)
         cuteBot.moveTime(cuteBot.Direction.forward, 20, 0.5)
-        
+        basic.pause(2000)
         cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
+        basic.pause (2000)
     }
 }
 function second_side (){
-    for (let index = 0; index < 4; index++) {
-        basic.pause(1000)
-        music.playTone(880, music.beat(BeatFraction.Quarter))
-    }
-    basic.pause(1000)
     if (sonar > 5 && sonar < 10) {
-        cuteBot.moveTime(cuteBot.Direction.backward, 30, 0.3)
-        basic.pause(2000)
         cuteBot.moveTime(cuteBot.Direction.right, 30, 0.4)
-        basic.pause(2000)
-        cuteBot.moveTime(cuteBot.Direction.forward, 20, 0.5)
+        basic.pause(1000)
+        cuteBot.moveTime(cuteBot.Direction.forward, 30, 0.4)
+        basic.pause(1000)
         cuteBot.moveTime(cuteBot.Direction.left, 30, 0.4)
+        basic.pause(500)
     }
 }
 function stop_if_line (){
